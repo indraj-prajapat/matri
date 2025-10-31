@@ -35,6 +35,11 @@ fi
 echo "▶️ Starting backend..."
 python app.py &
 
+echo "⏳ Waiting for backend to be ready..."
+until curl -s http://127.0.0.1:5000/ > /dev/null; do
+    sleep 1
+done
+
 cd ..
 
 echo "⚙️ Setting up frontend environment..."
