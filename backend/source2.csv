@@ -1,0 +1,20 @@
+0,1
+BLNumber,BL123456789
+ContainerNumber,CONT9876543
+DateOfMovement,2025-08-20
+PortOfDischarge,SGSIN
+PortOfLoading,INMUM
+SealNumber,SEAL56789
+ShippingLineID,SL001
+VesselID,VESSEL9988
+VGM,24500
+VoyageID,VOY20250820
+ShipperCode,SHIP123
+ShipperName,Global Logistics Pvt Ltd
+OOGHeight,2.5
+OOGFront,1.2
+OOGBack,1.1
+OOGLeft,0.8
+OOGRight,0.9
+Loading Time,2 hrs
+vesselDate,27/10/1997

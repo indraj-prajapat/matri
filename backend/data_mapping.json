@@ -1,0 +1,132 @@
+{
+    "containerNumber": {
+        "source": "containerNumber",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "loadPort": {
+        "source": "loadPort",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "dischargePort": {
+        "source": "dischargePort",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "destinationPort": {
+        "source": "destinationPort",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "lineCode": {
+        "source": "lineCode",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "terminalId": {
+        "source": "terminalId",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "isoCode": {
+        "source": "isoCode",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "containerCategory": {
+        "source": "containerCategoryStatus",
+        "target_format": "string",
+        "source_format": "string"
+    },
+    "containerCategoryStatus": {
+        "source": "containerCategoryStatus",
+        "target_format": "string",
+        "source_format": "string"
+    },
+    "containerMoveDate": {
+        "source": "containerMoveDate",
+        "target_format": "DD/MMM/YYYY h:mm:ss A",
+        "source_format": "DD/MMM/YYYY h:mm:ss A"
+    },
+    "containerIMCO1": {
+        "source": "containerIMCO1",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerUNNO1": {
+        "source": "containerUNNO1",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerIMCO2": {
+        "source": "containerIMCO2",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerUNNO2": {
+        "source": "containerUNNO2",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerIMCO3": {
+        "source": "containerIMCO3",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerUNNO3": {
+        "source": "containerUNNO3",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerIMCO4": {
+        "source": "containerIMCO4",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerUNNO4": {
+        "source": "containerUNNO4",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerIMCO5": {
+        "source": "containerIMCO5",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerUNNO5": {
+        "source": "containerUNNO5",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerIMCO6": {
+        "source": "containerIMCO6",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "containerUNNO6": {
+        "source": "containerUNNO6",
+        "target_format": "string or null",
+        "source_format": "string or null"
+    },
+    "vesselName": {
+        "source": "vesselName",
+        "target_format": "string",
+        "source_format": "string"
+    },
+    "voyageNumber": {
+        "source": "voyageNo",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "callSign": {
+        "source": "vesselCallSign",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "rotationNumebr": {
+        "source": "rotationNo",
+        "target_format": "integer",
+        "source_format": "integer"
+    }
+}

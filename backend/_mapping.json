@@ -1,0 +1,210 @@
+{
+    "containerNumber": {
+        "source_key": "containerNumber",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.99999950000025,
+        "synonym": 0.999999545454752,
+        "llm_score": 1.0,
+        "final_score": 0.9999997636364756
+    },
+    "loadPort": {
+        "source_key": "loadPort",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.99999950000025,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999998062500792
+    },
+    "dischargePort": {
+        "source_key": "dischargePort",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.99999950000025,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999998062500792
+    },
+    "destinationPort": {
+        "source_key": "destinationPort",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.99999950000025,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0000000834465026,
+        "final_score": 0.9999998479733305
+    },
+    "lineCode": {
+        "source_key": "lineCode",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.99999950000025,
+        "synonym": 0.999999545454752,
+        "llm_score": 1.0000000834465026,
+        "final_score": 0.9999998053597269
+    },
+    "terminalId": {
+        "source_key": "terminalId",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.99999950000025,
+        "synonym": 0.999999545454752,
+        "llm_score": 1.0000000834465026,
+        "final_score": 0.9999998053597269
+    },
+    "isoCode": {
+        "source_key": "isoCode",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.99999950000025,
+        "synonym": 0.999999545454752,
+        "llm_score": 1.0,
+        "final_score": 0.9999997636364756
+    },
+    "containerCategory": {
+        "source_key": "containerCategoryStatus",
+        "fuzzy": 0.8510633408785063,
+        "semantic": 0.8771594134451446,
+        "synonym": 0.9999996875000976,
+        "llm_score": 0.8269085143955007,
+        "final_score": 0.8862764388801447
+    },
+    "containerCategoryStatus": {
+        "source_key": "containerCategoryStatus",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999994801320351,
+        "synonym": 0.99999979166671,
+        "llm_score": 1.0,
+        "final_score": 0.9999998355132416
+    },
+    "containerMoveDate": {
+        "source_key": "containerMoveDate",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999994801320351,
+        "synonym": 0.9999997368421745,
+        "llm_score": 1.0,
+        "final_score": 0.9999998190658809
+    },
+    "containerIMCO1": {
+        "source_key": "containerIMCO1",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993807909604,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999997943291503
+    },
+    "containerUNNO1": {
+        "source_key": "containerUNNO1",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993807909604,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999997943291503
+    },
+    "containerIMCO2": {
+        "source_key": "containerIMCO2",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993211863156,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999997883686857
+    },
+    "containerUNNO2": {
+        "source_key": "containerUNNO2",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993807909604,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0000001668930054,
+        "final_score": 0.999999877775653
+    },
+    "containerIMCO3": {
+        "source_key": "containerIMCO3",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993807909604,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0000000834465026,
+        "final_score": 0.9999998360524016
+    },
+    "containerUNNO3": {
+        "source_key": "containerUNNO3",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999992913839932,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999997853884536
+    },
+    "containerIMCO4": {
+        "source_key": "containerIMCO4",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993807909604,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999997943291503
+    },
+    "containerUNNO4": {
+        "source_key": "containerUNNO4",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993211863156,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999997883686857
+    },
+    "containerIMCO5": {
+        "source_key": "containerIMCO5",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993807909604,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0000000834465026,
+        "final_score": 0.9999998360524016
+    },
+    "containerUNNO5": {
+        "source_key": "containerUNNO5",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993211863156,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0000000834465026,
+        "final_score": 0.999999830091937
+    },
+    "containerIMCO6": {
+        "source_key": "containerIMCO6",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993807909604,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0,
+        "final_score": 0.9999997943291503
+    },
+    "containerUNNO6": {
+        "source_key": "containerUNNO6",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.9999993807909604,
+        "synonym": 0.9999996875000976,
+        "llm_score": 1.0000000834465026,
+        "final_score": 0.9999998360524016
+    },
+    "vesselName": {
+        "source_key": "vesselName",
+        "fuzzy": 0.99999950000025,
+        "semantic": 0.99999950000025,
+        "synonym": 0.999999545454752,
+        "llm_score": 1.0000000834465026,
+        "final_score": 0.9999998053597269
+    },
+    "voyageNumber": {
+        "source_key": "voyageNo",
+        "fuzzy": 0.5833328333337618,
+        "semantic": 0.6226748294471941,
+        "synonym": 0.999999545454752,
+        "llm_score": 0.7203606234146999,
+        "final_score": 0.7807809416218712
+    },
+    "callSign": {
+        "source_key": "vesselCallSign",
+        "fuzzy": 0.8387091904269217,
+        "semantic": 0.860965627029006,
+        "synonym": 0.9999996875000976,
+        "llm_score": 0.8529867861721967,
+        "final_score": 0.8964607810817204
+    },
+    "rotationNumebr": {
+        "source_key": "rotationNo",
+        "fuzzy": 0.5833328333337618,
+        "semantic": 0.6026843778132772,
+        "synonym": 0.4999998437500488,
+        "llm_score": 0.9114555336059407,
+        "final_score": 0.7243294410426888
+    }
+}
