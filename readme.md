@@ -32,7 +32,7 @@ grok2 = ###
 
 ## Run the Project
 
-1. Open a terminal and navigate to the project root:
+1. Open a git bash terminal and navigate to the project root:
 
 ```bash
 cd path/to/maitri  # where backend and forntend folder exists
