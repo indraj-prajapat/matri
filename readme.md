@@ -38,25 +38,25 @@ grok2 = ###
 cd path/to/maitri  # where backend and forntend folder exists
 
 bash run_project.sh
+```
 
 
+## This script will:
 
-# This script will:
+### Create a virtual environment in backend/venv (if not already present)
 
-# Create a virtual environment in backend/venv (if not already present)
+### Install backend dependencies
 
-# Install backend dependencies
+### Activate the virtual environment
 
-# Activate the virtual environment
+### Start the backend server
 
-# Start the backend server
+### Install frontend dependencies
 
-# Install frontend dependencies
-
-# Start the frontend server
+### Start the frontend server
 
 
-# after runing backend and frontend server you can proccedd to frontend server :- 
-#   ➜  Local:   http://localhost:8080/
-#   ➜  Network: http://192.168.137.1:8080/
-#   ➜  Network: http://172.16.2.114:8080/
+## after runing backend and frontend server you can proccedd to frontend server :- 
+##   ➜  Local:   http://localhost:8080/
+##   ➜  Network: http://192.168.137.1:8080/
+##   ➜  Network: http://172.16.2.114:8080/
