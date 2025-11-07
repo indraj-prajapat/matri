@@ -1,132 +1,132 @@
 {
-    "containerNumber": {
-        "source": "containerNumber",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "loadPort": {
-        "source": "loadPort",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "dischargePort": {
-        "source": "dischargePort",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "destinationPort": {
-        "source": "destinationPort",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "lineCode": {
-        "source": "lineCode",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "terminalId": {
-        "source": "terminalId",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "isoCode": {
-        "source": "isoCode",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "containerCategory": {
-        "source": "containerCategoryStatus",
-        "target_format": "string",
-        "source_format": "string"
-    },
-    "containerCategoryStatus": {
-        "source": "containerCategoryStatus",
-        "target_format": "string",
-        "source_format": "string"
-    },
-    "containerMoveDate": {
-        "source": "containerMoveDate",
-        "target_format": "DD/MMM/YYYY h:mm:ss A",
-        "source_format": "DD/MMM/YYYY h:mm:ss A"
-    },
-    "containerIMCO1": {
-        "source": "containerIMCO1",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerUNNO1": {
-        "source": "containerUNNO1",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerIMCO2": {
-        "source": "containerIMCO2",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerUNNO2": {
-        "source": "containerUNNO2",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerIMCO3": {
-        "source": "containerIMCO3",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerUNNO3": {
-        "source": "containerUNNO3",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerIMCO4": {
-        "source": "containerIMCO4",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerUNNO4": {
-        "source": "containerUNNO4",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerIMCO5": {
-        "source": "containerIMCO5",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerUNNO5": {
-        "source": "containerUNNO5",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerIMCO6": {
-        "source": "containerIMCO6",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "containerUNNO6": {
-        "source": "containerUNNO6",
-        "target_format": "string or null",
-        "source_format": "string or null"
-    },
-    "vesselName": {
-        "source": "vesselName",
-        "target_format": "string",
-        "source_format": "string"
-    },
-    "voyageNumber": {
-        "source": "voyageNo",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "callSign": {
-        "source": "vesselCallSign",
-        "target_format": "string (alphanumeric)",
-        "source_format": "string (alphanumeric)"
-    },
-    "rotationNumebr": {
-        "source": "rotationNo",
+    "MsgRefNbr": {
+        "source": "PortOfReference",
         "target_format": "integer",
+        "source_format": "string (alphanumeric)"
+    },
+    "MsgDateTime": {
+        "source": "RegistrationYear",
+        "target_format": "float (Excel date format)",
         "source_format": "integer"
+    },
+    "TerminalID": {
+        "source": "TerminalCode",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "SenderID": {
+        "source": "IMONumber",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (numeric)"
+    },
+    "ReceipientID": {
+        "source": "IMONumber",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (numeric)"
+    },
+    "VesselID": {
+        "source": "VesselNumber",
+        "target_format": "string (numeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "VesselName": {
+        "source": "VesselClass",
+        "target_format": "string",
+        "source_format": "string"
+    },
+    "VesselCallSign": {
+        "source": "CallSign",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "VslInVoyageNbr": {
+        "source": "VesselNumber",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "VslOutVoyageNbr": {
+        "source": "VesselNumber",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "ContainerNbr": {
+        "source": "IMONumber",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (numeric)"
+    },
+    "ContainerISOType": {
+        "source": "Type",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string"
+    },
+    "ContainerCategory": {
+        "source": "Name",
+        "target_format": "string",
+        "source_format": "string"
+    },
+    "ContainerLoadPort": {
+        "source": "PortOfReference",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "ContainerDischPort": {
+        "source": "PortOfReference",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "ContainerLineOpr": {
+        "source": "ShippingLineCode",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "ContainerStatus": {
+        "source": "ShipOwner",
+        "target_format": "string",
+        "source_format": "string"
+    },
+    "ContainerCommodity": {
+        "source": "Capacity",
+        "target_format": "string",
+        "source_format": "integer"
+    },
+    "ContainerIsReefer": {
+        "source": "Name",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string"
+    },
+    "ContainerRequiredTemp": {
+        "source": "ShipOwner",
+        "target_format": "float (Celsius)",
+        "source_format": "string"
+    },
+    "ContainerReqTempUnit": {
+        "source": "Capacity",
+        "target_format": "string (alphanumeric)",
+        "source_format": "integer"
+    },
+    "ContainerGrossWt": {
+        "source": "GrossRegTons",
+        "target_format": "float (kilograms)",
+        "source_format": "integer"
+    },
+    "ContainerGrossWtUnit": {
+        "source": "GrossRegTons",
+        "target_format": "string (alphanumeric)",
+        "source_format": "integer"
+    },
+    "Container SealNo1": {
+        "source": "VesselNumber",
+        "target_format": "string (alphanumeric)",
+        "source_format": "string (alphanumeric)"
+    },
+    "ActivityType": {
+        "source": "Type",
+        "target_format": "string",
+        "source_format": "string"
+    },
+    "ActivityDateTime": {
+        "source": "CountryName",
+        "target_format": "float (Excel date format)",
+        "source_format": "string"
     }
 }

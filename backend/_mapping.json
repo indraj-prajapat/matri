@@ -1,210 +1,210 @@
 {
-    "containerNumber": {
-        "source_key": "containerNumber",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.99999950000025,
+    "MsgRefNbr": {
+        "source_key": "PortOfReference",
+        "fuzzy": 0.23333285333432074,
+        "semantic": 0.3496982493383311,
+        "synonym": 0.0,
+        "llm_score": 0.44414156909739033,
+        "final_score": 0.28037389481596037
+    },
+    "MsgDateTime": {
+        "source_key": "RegistrationYear",
+        "fuzzy": 0.10416619791877602,
+        "semantic": 0.42360553661311645,
+        "synonym": 0.0,
+        "llm_score": 0.3016758129164413,
+        "final_score": 0.2036150799114099
+    },
+    "TerminalID": {
+        "source_key": "TerminalCode",
+        "fuzzy": 0.6249995000004,
+        "semantic": 0.7082873202203466,
         "synonym": 0.999999545454752,
-        "llm_score": 1.0,
-        "final_score": 0.9999997636364756
+        "llm_score": 0.6597994961236653,
+        "final_score": 0.763228293720333
     },
-    "loadPort": {
-        "source_key": "loadPort",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.99999950000025,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999998062500792
+    "SenderID": {
+        "source_key": "IMONumber",
+        "fuzzy": 0.33333283333408337,
+        "semantic": 0.340504166545344,
+        "synonym": 0.2727271487603869,
+        "llm_score": 0.46879929840564727,
+        "final_score": 0.3836014938188824
     },
-    "dischargePort": {
-        "source_key": "dischargePort",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.99999950000025,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999998062500792
+    "ReceipientID": {
+        "source_key": "IMONumber",
+        "fuzzy": 0.21666616666782054,
+        "semantic": 0.33346073573140206,
+        "synonym": 0.2727271487603869,
+        "llm_score": 0.4489388554260648,
+        "final_score": 0.36130026258107073
     },
-    "destinationPort": {
-        "source_key": "destinationPort",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.99999950000025,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0000000834465026,
-        "final_score": 0.9999998479733305
-    },
-    "lineCode": {
-        "source_key": "lineCode",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.99999950000025,
+    "VesselID": {
+        "source_key": "VesselNumber",
+        "fuzzy": 0.5384610414205772,
+        "semantic": 0.7045524037717553,
         "synonym": 0.999999545454752,
-        "llm_score": 1.0000000834465026,
-        "final_score": 0.9999998053597269
+        "llm_score": 0.7610306730193476,
+        "final_score": 0.8048165446653326
     },
-    "terminalId": {
-        "source_key": "terminalId",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.99999950000025,
-        "synonym": 0.999999545454752,
-        "llm_score": 1.0000000834465026,
-        "final_score": 0.9999998053597269
+    "VesselName": {
+        "source_key": "VesselClass",
+        "fuzzy": 0.5999995000004167,
+        "semantic": 0.7093947596191116,
+        "synonym": 0.727272396694365,
+        "llm_score": 0.7375536561012268,
+        "final_score": 0.7178979730208758
     },
-    "isoCode": {
-        "source_key": "isoCode",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.99999950000025,
-        "synonym": 0.999999545454752,
-        "llm_score": 1.0,
-        "final_score": 0.9999997636364756
-    },
-    "containerCategory": {
-        "source_key": "containerCategoryStatus",
-        "fuzzy": 0.8510633408785063,
-        "semantic": 0.8771594134451446,
-        "synonym": 0.9999996875000976,
-        "llm_score": 0.8269085143955007,
-        "final_score": 0.8862764388801447
-    },
-    "containerCategoryStatus": {
-        "source_key": "containerCategoryStatus",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999994801320351,
-        "synonym": 0.99999979166671,
-        "llm_score": 1.0,
-        "final_score": 0.9999998355132416
-    },
-    "containerMoveDate": {
-        "source_key": "containerMoveDate",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999994801320351,
-        "synonym": 0.9999997368421745,
-        "llm_score": 1.0,
-        "final_score": 0.9999998190658809
-    },
-    "containerIMCO1": {
-        "source_key": "containerIMCO1",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993807909604,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999997943291503
-    },
-    "containerUNNO1": {
-        "source_key": "containerUNNO1",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993807909604,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999997943291503
-    },
-    "containerIMCO2": {
-        "source_key": "containerIMCO2",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993211863156,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999997883686857
-    },
-    "containerUNNO2": {
-        "source_key": "containerUNNO2",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993807909604,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0000001668930054,
-        "final_score": 0.999999877775653
-    },
-    "containerIMCO3": {
-        "source_key": "containerIMCO3",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993807909604,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0000000834465026,
-        "final_score": 0.9999998360524016
-    },
-    "containerUNNO3": {
-        "source_key": "containerUNNO3",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999992913839932,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999997853884536
-    },
-    "containerIMCO4": {
-        "source_key": "containerIMCO4",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993807909604,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999997943291503
-    },
-    "containerUNNO4": {
-        "source_key": "containerUNNO4",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993211863156,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999997883686857
-    },
-    "containerIMCO5": {
-        "source_key": "containerIMCO5",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993807909604,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0000000834465026,
-        "final_score": 0.9999998360524016
-    },
-    "containerUNNO5": {
-        "source_key": "containerUNNO5",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993211863156,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0000000834465026,
-        "final_score": 0.999999830091937
-    },
-    "containerIMCO6": {
-        "source_key": "containerIMCO6",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993807909604,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0,
-        "final_score": 0.9999997943291503
-    },
-    "containerUNNO6": {
-        "source_key": "containerUNNO6",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.9999993807909604,
-        "synonym": 0.9999996875000976,
-        "llm_score": 1.0000000834465026,
-        "final_score": 0.9999998360524016
-    },
-    "vesselName": {
-        "source_key": "vesselName",
-        "fuzzy": 0.99999950000025,
-        "semantic": 0.99999950000025,
-        "synonym": 0.999999545454752,
-        "llm_score": 1.0000000834465026,
-        "final_score": 0.9999998053597269
-    },
-    "voyageNumber": {
-        "source_key": "voyageNo",
-        "fuzzy": 0.5833328333337618,
-        "semantic": 0.6226748294471941,
-        "synonym": 0.999999545454752,
-        "llm_score": 0.7203606234146999,
-        "final_score": 0.7807809416218712
-    },
-    "callSign": {
-        "source_key": "vesselCallSign",
+    "VesselCallSign": {
+        "source_key": "CallSign",
         "fuzzy": 0.8387091904269217,
-        "semantic": 0.860965627029006,
-        "synonym": 0.9999996875000976,
-        "llm_score": 0.8529867861721967,
-        "final_score": 0.8964607810817204
+        "semantic": 0.8609656463617424,
+        "synonym": 0.6666665277778067,
+        "llm_score": 0.9011394958163417,
+        "final_score": 0.8205371899203793
     },
-    "rotationNumebr": {
-        "source_key": "rotationNo",
-        "fuzzy": 0.5833328333337618,
-        "semantic": 0.6026843778132772,
-        "synonym": 0.4999998437500488,
-        "llm_score": 0.9114555336059407,
-        "final_score": 0.7243294410426888
+    "VslInVoyageNbr": {
+        "source_key": "VesselNumber",
+        "fuzzy": 0.4374995078130537,
+        "semantic": 0.38193142772080985,
+        "synonym": 0.0,
+        "llm_score": 0.4743400769233703,
+        "final_score": 0.3191131320150715
+    },
+    "VslOutVoyageNbr": {
+        "source_key": "VesselNumber",
+        "fuzzy": 0.399999520000576,
+        "semantic": 0.3802752758379022,
+        "synonym": 0.0,
+        "llm_score": 0.5012184223326126,
+        "final_score": 0.3286366907501541
+    },
+    "ContainerNbr": {
+        "source_key": "IMONumber",
+        "fuzzy": 0.352563614399098,
+        "semantic": 0.2579274796236188,
+        "synonym": 0.0,
+        "llm_score": 0.5518857499386401,
+        "final_score": 0.3369919843715917
+    },
+    "ContainerISOType": {
+        "source_key": "Type",
+        "fuzzy": 0.5789469570640042,
+        "semantic": 0.6815682796078558,
+        "synonym": 0.15789469529086964,
+        "llm_score": 0.3993411129713058,
+        "final_score": 0.37309048874009976
+    },
+    "ContainerCategory": {
+        "source_key": "Name",
+        "fuzzy": 0.3111106133341298,
+        "semantic": 0.3804894586709434,
+        "synonym": 0.0,
+        "llm_score": 0.3592042980023793,
+        "final_score": 0.24876215620169698
+    },
+    "ContainerLoadPort": {
+        "source_key": "PortOfReference",
+        "fuzzy": 0.5211401115553703,
+        "semantic": 0.6145417637877635,
+        "synonym": 0.33333326388890333,
+        "llm_score": 0.38380176226298013,
+        "final_score": 0.40546904783247445
+    },
+    "ContainerDischPort": {
+        "source_key": "PortOfReference",
+        "fuzzy": 0.49382666666716063,
+        "semantic": 0.6064860712157116,
+        "synonym": 0.33333326388890333,
+        "llm_score": 0.36613491704830753,
+        "final_score": 0.393098711479112
+    },
+    "ContainerLineOpr": {
+        "source_key": "ShippingLineCode",
+        "fuzzy": 0.5277772777782516,
+        "semantic": 0.5786018465186379,
+        "synonym": 0.33333326388890333,
+        "llm_score": 0.4156445497901816,
+        "final_score": 0.4184601664914508
+    },
+    "ContainerStatus": {
+        "source_key": "ShipOwner",
+        "fuzzy": 0.3055550555563737,
+        "semantic": 0.37533326154555535,
+        "synonym": 0.0,
+        "llm_score": 0.35443288922309873,
+        "final_score": 0.24530527632174226
+    },
+    "ContainerCommodity": {
+        "source_key": "Capacity",
+        "fuzzy": 0.3809518911570923,
+        "semantic": 0.36012199352133123,
+        "synonym": 0.0,
+        "llm_score": 0.4107848430221731,
+        "final_score": 0.2794998099789289
+    },
+    "ContainerIsReefer": {
+        "source_key": "Name",
+        "fuzzy": 0.285713795919207,
+        "semantic": 0.39105959242323507,
+        "synonym": 0.0,
+        "llm_score": 0.39907501404543955,
+        "final_score": 0.267214845856964
+    },
+    "ContainerRequiredTemp": {
+        "source_key": "ShipOwner",
+        "fuzzy": 0.30576235953397435,
+        "semantic": 0.3277354059896527,
+        "synonym": 0.0,
+        "llm_score": 0.24835364698402343,
+        "final_score": 0.18752660004437444
+    },
+    "ContainerReqTempUnit": {
+        "source_key": "Capacity",
+        "fuzzy": 0.16037692274949292,
+        "semantic": 0.36070934280528266,
+        "synonym": 0.0,
+        "llm_score": 0.33940122317184096,
+        "final_score": 0.22180923814139802
+    },
+    "ContainerGrossWt": {
+        "source_key": "GrossRegTons",
+        "fuzzy": 0.4619417661773877,
+        "semantic": 0.5515274454556255,
+        "synonym": 0.33333326388890333,
+        "llm_score": 0.46231113982082594,
+        "final_score": 0.4325024702403853
+    },
+    "ContainerGrossWtUnit": {
+        "source_key": "GrossRegTons",
+        "fuzzy": 0.3885205081653987,
+        "semantic": 0.5509540035787401,
+        "synonym": 0.2499999609375061,
+        "llm_score": 0.49598797035217285,
+        "final_score": 0.4169414246317521
+    },
+    "Container SealNo1": {
+        "source_key": "VesselNumber",
+        "fuzzy": 0.3030298071633458,
+        "semantic": 0.41061855397999164,
+        "synonym": 0.0,
+        "llm_score": 0.35234061578909553,
+        "final_score": 0.24753514400888152
+    },
+    "ActivityType": {
+        "source_key": "Type",
+        "fuzzy": 0.7199995392002949,
+        "semantic": 0.8140353186595319,
+        "synonym": 0.2727271487603869,
+        "llm_score": 0.4154007591984489,
+        "final_score": 0.4429220100133232
+    },
+    "ActivityDateTime": {
+        "source_key": "CountryName",
+        "fuzzy": 0.3947363434909345,
+        "semantic": 0.35798157731877006,
+        "synonym": 0.0,
+        "llm_score": 0.20951030976897062,
+        "final_score": 0.18002694696545576
     }
 }

@@ -103,7 +103,7 @@ export const MetadataModal = ({ isOpen, onClose, leftData, rightData }: Metadata
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
         <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-          mAITri AI Analysis
+          MATRI AI Analysis
         </DialogTitle>
 
         <div className="flex-1 overflow-y-auto">

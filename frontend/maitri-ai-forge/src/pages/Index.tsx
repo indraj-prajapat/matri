@@ -174,6 +174,7 @@ const Index = () => {
 
       const results = await response.json();
       setMappingResults(results);
+      console.log('Mapping results:', results);
       setIsResultsModalOpen(true);
       toast.success('Mapping completed successfully!');
     } catch (error) {
@@ -231,7 +232,7 @@ const Index = () => {
               {/* Left Section */}
               <div className="bg-card rounded-xl border border-border shadow-lg overflow-hidden">
                 <UploadSection
-                  title="Source"
+                  title="Origin"
                   data={leftData}
                   onChange={setLeftData}
                   showErrors={showLeftErrors}
@@ -246,7 +247,7 @@ const Index = () => {
               {/* Right Section */}
               <div className="bg-card rounded-xl border border-border shadow-lg overflow-hidden">
                 <UploadSection
-                  title="Target"
+                  title="Destination"
                   data={rightData}
                   onChange={setRightData}
                   showErrors={showRightErrors}
@@ -267,13 +268,13 @@ const Index = () => {
                   {isLoading ? (
                     <>
                       <Sparkles className="w-6 h-6 animate-pulse " />
-                      <span>mAITri AI</span>
+                      <span>MAITRI AI</span>
                       <Sparkles className="w-6 h-6 animate-pulse" />
                     </>
                   ) : (
                     <>
                       <Sparkles className="w-6 h-6 animate-pulse" />
-                      <span>mAITri AI</span>
+                      <span>MAITRI AI</span>
                       <Sparkles className="w-6 h-6 animate-pulse" />
                     </>
                   )}

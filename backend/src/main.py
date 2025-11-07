@@ -10,8 +10,12 @@ from src.utils.mapping_methods import *
 
 
 def get_data_mapping(source_dict, target_dict, full_mapping=True, save_csv=True):
+    start_total = time.time()
+    t1 = time.time()
     keys = {**source_dict, **target_dict}
     descriptions, format_info = generate_description_format(keys)
+    print(f"✅ Step 1 - Description generation: {time.time() - t1:.2f} sec")
+    t2 = time.time()
     # print(descriptions)
     if descriptions == None:
         return format_info
@@ -26,9 +30,11 @@ def get_data_mapping(source_dict, target_dict, full_mapping=True, save_csv=True)
             
             # Collect results
             for tgt_key, future in futures:
+                score_time = time.time()
                 src_key, fuzzy, semantic, synonym = future.result()
+                llm_start = time.time()
                 llm_score = llm_descriptions_similarity(tgt_key, src_key, descriptions, emb)
-                
+                llm_time = time.time() - llm_start
                 if tgt_key not in result:
                     result[tgt_key] = []
                 
@@ -47,51 +53,53 @@ def get_data_mapping(source_dict, target_dict, full_mapping=True, save_csv=True)
                     "llm_score": llm_score,
                     "final_score": final_score
                 })
+            print(f"✅ Step 2 - Parallel scoring (fuzzy + semantic + synonym + LLM): {time.time() - t2:.2f} sec")
         
-        with open("full_mapping.json", "w") as f:
-            json.dump(result, f, indent=4)
+        # with open("full_mapping.json", "w") as f:
+        #     json.dump(result, f, indent=4)
 
-        filtered_result = {}
-        for tgt_key, matches in result.items():
-            if not matches:
-                continue
-            # pick the one with max final_score
-            best_match = max(matches, key=lambda x: x["final_score"])
-            filtered_result[tgt_key] = best_match
+        # filtered_result = {}
+        # for tgt_key, matches in result.items():
+        #     if not matches:
+        #         continue
+        #     # pick the one with max final_score
+        #     best_match = max(matches, key=lambda x: x["final_score"])
+        #     filtered_result[tgt_key] = best_match
         
-        with open("_mapping.json", "w") as f:
-            json.dump(filtered_result, f, indent=4)
+        # with open("_mapping.json", "w") as f:
+        #     json.dump(filtered_result, f, indent=4)
         
-        data_mapping = {}
-        for key, values in filtered_result.items():
-            data_mapping[key] = {"source": values["source_key"], "target_format": format_info[key]['format'], "source_format": format_info[values["source_key"]]['format']}
-        # print(filtered_result)
+        # data_mapping = {}
+        # for key, values in filtered_result.items():
+        #     data_mapping[key] = {"source": values["source_key"], "target_format": format_info[key]['format'], "source_format": format_info[values["source_key"]]['format']}
+        # # print(filtered_result)
 
-        with open("data_mapping.json", "w") as f:
-            json.dump(data_mapping, f, indent=4)
+        # with open("data_mapping.json", "w") as f:
+        #     json.dump(data_mapping, f, indent=4)
         
-        # ✅ Save results into CSV
-        if save_csv:
-            with open("mapping_results.csv", mode="w", newline="", encoding="utf-8") as file:
-                writer = csv.writer(file)
+        # # ✅ Save results into CSV
+        # if save_csv:
+        #     with open("mapping_results.csv", mode="w", newline="", encoding="utf-8") as file:
+        #         writer = csv.writer(file)
 
-                # Write header
-                writer.writerow(["Target Key", "Source Key", "Fuzzy", "Semantic", "Synonym", "LLM Score", "Final Score"])
+        #         # Write header
+        #         writer.writerow(["Target Key", "Source Key", "Fuzzy", "Semantic", "Synonym", "LLM Score", "Final Score"])
 
-                # Write each row
-                for tgt_key, mappings in result.items():
-                    for m in mappings:
-                        writer.writerow([
-                            tgt_key,
-                            m["source_key"],   # 🔄 replaced
-                            round(m["fuzzy"], 4),
-                            round(m["semantic"], 4),
-                            round(m["synonym"], 4),
-                            round(m["llm_score"], 4),
-                            round(m["final_score"], 4)
-                        ])
+        #         # Write each row
+        #         for tgt_key, mappings in result.items():
+        #             for m in mappings:
+        #                 writer.writerow([
+        #                     tgt_key,
+        #                     m["source_key"],   # 🔄 replaced
+        #                     round(m["fuzzy"], 4),
+        #                     round(m["semantic"], 4),
+        #                     round(m["synonym"], 4),
+        #                     round(m["llm_score"], 4),
+        #                     round(m["final_score"], 4)
+        #                 ])
 
-        return result if full_mapping else data_mapping
+        # return result if full_mapping else data_mapping
+        return result
 
 
 if __name__ == '__main__':

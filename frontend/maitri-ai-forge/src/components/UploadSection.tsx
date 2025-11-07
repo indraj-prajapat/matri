@@ -138,7 +138,7 @@ export const UploadSection = ({ title, data, onChange, showErrors }: UploadSecti
         {/* Port/Station Selection */}
         <div>
           <Label className={cn(hasPortStationError && "text-destructive")}>
-            System {hasPortStationError && <span className="text-xs ml-2">(Required)</span>}
+            Port {hasPortStationError && <span className="text-xs ml-2">(Required)</span>}
           </Label>
           <Select
             value={data.portStation || undefined}
