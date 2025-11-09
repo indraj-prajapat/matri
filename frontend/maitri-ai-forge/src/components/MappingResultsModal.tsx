@@ -44,24 +44,28 @@ interface MappingResultsModalProps {
   onClose: () => void;
   results: MappingResult;
   onApprove?: (approvedMappings: Array<{ targetKey: string; sourceKey: string }>) => void;
+  scoreThreshold?: number;
 }
 
-export const MappingResultsModal = ({ isOpen, onClose, results, onApprove }: MappingResultsModalProps) => {
+export const MappingResultsModal = ({ isOpen, onClose, results, onApprove, scoreThreshold = 0.4 }: MappingResultsModalProps) => {
   const [selectedKeys, setSelectedKeys] = useState<Record<string, string | null>>({});
   const [isApproved, setIsApproved] = useState(false);
   const [hasEdited, setHasEdited] = useState(false);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [searchTerms, setSearchTerms] = useState<Record<string, string>>({});
+  const [currentThreshold, setCurrentThreshold] = useState(scoreThreshold);
+  const [lowThreshold, setLowThreshold] = useState(0.4);
+  const [highThreshold, setHighThreshold] = useState(0.8);
 
-  // Initialize selected keys with key1 as default
+  // Initialize selected keys with key1 as default based on current threshold
   useEffect(() => {
-    if (isOpen && Object.keys(selectedKeys).length === 0 && Object.keys(results).length > 0) {
+    if (isOpen && Object.keys(results).length > 0) {
       const selections: Record<string, string | null> = {};
 
       Object.entries(results).forEach(([targetMessage, mappings]) => {
         Object.entries(mappings).forEach(([targetKey, keySet]) => {
-          const key1Info = keySet?.key1; // your KeyInfo object
-          const shouldSelectKey1 = key1Info && key1Info.final_score > 0.4;
+          const key1Info = keySet?.key1;
+          const shouldSelectKey1 = key1Info && key1Info.final_score >= currentThreshold;
 
           const uniqueKey = `${targetMessage}::${targetKey}`;
           selections[uniqueKey] = shouldSelectKey1 ? "key1" : null;
@@ -70,7 +74,7 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove }: Map
 
       setSelectedKeys(selections);
     }
-  }, [isOpen, results]);
+  }, [isOpen, results, currentThreshold]);
 
 
   // Get all available keys for a target
@@ -87,13 +91,18 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove }: Map
   };
 
 
-  // Get color based on score
+  // Get color based on score with user-defined thresholds
   const getScoreColor = (score: number) => {
-    if (score >= 0.8) return 'text-green-500';
-    if (score >= 0.4) return 'text-yellow-500';
+    if (score >= highThreshold) return 'text-green-500';
+    if (score >= lowThreshold) return 'text-yellow-500';
     return 'text-red-500';
   };
-  // checkpoint
+  
+  const getScoreBgColor = (score: number) => {
+    if (score >= highThreshold) return 'bg-green-50';
+    if (score >= lowThreshold) return 'bg-yellow-50';
+    return 'bg-red-50';
+  };
 
   const handleKeySelect = (targetMessage: string, targetKey: string, keyNum: string | null) => {
     const key = `${targetMessage}::${targetKey}`;
@@ -538,12 +547,116 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove }: Map
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[95vw] max-h-[90vh] flex flex-col">
+      <DialogContent className="max-w-[95vw] max-h-[90vh] flex flex-col ">
         <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
           Mapping Results
         </DialogTitle>
 
-        <ScrollArea className="flex-1 mt-4 pr-4 overflow-scroll">
+        {/* Dual Handle Range Slider for Color Thresholds */}
+        <div className="mt-0 p-0 bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg border border-border text-center ">
+          <div className="mb-0 felx flex-col">
+            <h5 className="text-sm font-semibold text-foreground mb-1">Color Thresholds</h5>
+            <p className="text-xs text-muted-foreground">Drag the handles to adjust score color indicators</p>
+          </div>
+          
+          <div className="space-y-0">
+            {/* Dual Range Slider */}
+            <div className="space-y-0">
+              <div className="flex items-center justify-between mb-0">
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                  <span className="text-xs font-bold text-yellow-600 bg-yellow-50 px-2 py-0 rounded">
+                    {lowThreshold.toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-0 rounded">
+                    {highThreshold.toFixed(2)}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="relative h-3 flex items-center">
+                {/* Track Background */}
+                <div className="absolute w-full h-1 bg-gradient-to-r from-red-300 to-green-300 rounded-lg"></div>
+                
+                {/* Active Track (between thumbs) */}
+                <div 
+                  className="absolute h-1 bg-yellow-400 rounded-xs"
+                  style={{
+                    left: `${lowThreshold * 100}%`,
+                    right: `${100 - (highThreshold * 100)}%`
+                  }}
+                ></div>
+                
+                {/* Low Threshold Handle */}
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={lowThreshold}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (val < highThreshold - 0.1) {
+                      setLowThreshold(val);
+                    }
+                  }}
+                  className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-moz-range-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-yellow-500 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:transition-transform [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-2 [&::-moz-range-thumb]:h-2 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-yellow-500 [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-lg [&::-moz-range-thumb]:cursor-pointer"
+                  style={{ zIndex: lowThreshold > highThreshold - 0.15 ? 5 : 3 }}
+                />
+                
+                {/* High Threshold Handle */}
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={highThreshold}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (val > lowThreshold + 0.1) {
+                      setHighThreshold(val);
+                    }
+                  }}
+                  className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-moz-range-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-green-500 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:transition-transform [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-2 [&::-moz-range-thumb]:h-2 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-green-500 [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-lg [&::-moz-range-thumb]:cursor-pointer"
+                  style={{ zIndex: 4 }}
+                />
+              </div>
+              
+              {/* Labels below slider */}
+              <div className="flex justify-between text-xs text-muted-foreground mt-1 px-1">
+                <span>0.00</span>
+                <span>1.00</span>
+              </div>
+            </div>
+
+            {/* Color Legend */}
+            <div className="flex items-center justify-center gap-4 pt-0 border-t border-border/50">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                <span className="text-xs text-muted-foreground">
+                  &lt; {lowThreshold.toFixed(2)}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                <span className="text-xs text-muted-foreground">
+                  {lowThreshold.toFixed(2)} - {highThreshold.toFixed(2)}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                <span className="text-xs text-muted-foreground">
+                  ≥ {highThreshold.toFixed(2)}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ScrollArea className="flex-1 mt-1 pr-4 overflow-scroll">
           <div className="space-y-8">
             {Object.entries(results).map(([targetMessage, mappings]) => (
               <div key={targetMessage} className="space-y-4">
@@ -558,9 +671,6 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove }: Map
                         <th className="px-3 py-4 text-left font-bold border-r-2 border-border bg-gradient-to-r from-primary/10 to-primary/5">
                           Destination Key
                         </th>
-                        {/* <th className="px-6 py-4 text-left font-bold border-r-2 border-border bg-gradient-to-r from-green-50 to-blue-50">
-                          Selected
-                        </th> */}
                         <th className="px-6 py-4 text-center font-bold border-r-2 border-border bg-gradient-to-r from-accent/10 to-accent/5" colSpan={3}>
                           Best three Mappings (tap to select)
                         </th>
@@ -578,7 +688,6 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove }: Map
                           <td className="px-6 py-4 font-bold border-r-1 text-center border-border bg-white text-black">
                             {targetKey}
                           </td>
-                          {/* {renderSelectedCell(targetMessage, targetKey)} */}
                           {renderKeyCell(targetMessage, targetKey, 'key1', keys.key1)}
                           {renderKeyCell(targetMessage, targetKey, 'key2', keys.key2)}
                           {renderKeyCell(targetMessage, targetKey, 'key3', keys.key3)}
