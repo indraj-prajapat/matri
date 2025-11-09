@@ -553,7 +553,7 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove, score
         </DialogTitle>
 
         {/* Dual Handle Range Slider for Color Thresholds */}
-        <div className="mt-0 p-0 bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg border border-border text-center ">
+        <div className="mt-0 px-3 bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg border border-border text-center ">
           <div className="mb-0 felx flex-col">
             <h5 className="text-sm font-semibold text-foreground mb-1">Color Thresholds</h5>
             <p className="text-xs text-muted-foreground">Drag the handles to adjust score color indicators</p>
