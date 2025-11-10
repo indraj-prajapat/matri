@@ -9,8 +9,8 @@ from concurrent.futures import ProcessPoolExecutor
 from itertools import product
 import multiprocessing
 app = Flask(__name__)
-CORS(app)
 
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:8080"}})
 # -------------------------------------------------------------
 # Utility: Convert CSV to JSON
 # -------------------------------------------------------------
@@ -66,7 +66,9 @@ def process_source_target_pair(src_file, src_json, tgt_file, tgt_json, metadata)
     
     return tgt_file, enriched_results
 import time
-@app.route('/map_files', methods=['POST'])
+
+
+@app.route('/api/map_files', methods=['POST'])
 def map_files():
     try:
         start_total_t = time.time()
@@ -155,5 +157,147 @@ def map_files():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+
+
+from pathlib import Path
+from typing import List, Dict, Any
+import logging
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Configuration
+DATA_DIR = Path(__file__).parent / 'data'
+MAPPINGS_FILE = DATA_DIR / 'mappings.json'
+
+def init_data_dir():
+    """Initialize data directory and mappings file if they don't exist"""
+    try:
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        if not MAPPINGS_FILE.exists():
+            with open(MAPPINGS_FILE, 'w') as f:
+                json.dump([], f)
+            logger.info(f"Created mappings file at {MAPPINGS_FILE}")
+        else:
+            logger.info(f"Mappings file exists at {MAPPINGS_FILE}")
+    except Exception as e:
+        logger.error(f"Error initializing data directory: {e}")
+        raise
+
+# Initialize data directory when module loads
+init_data_dir()
+
+def read_mappings() -> List[Dict[Any, Any]]:
+    """Read mappings from JSON file"""
+    try:
+        with open(MAPPINGS_FILE, 'r') as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        logger.error("Invalid JSON in mappings file")
+        return []
+    except Exception as e:
+        logger.error(f"Error reading mappings: {e}")
+        return []
+
+def write_mappings(mappings: List[Dict[Any, Any]]) -> bool:
+    """Write mappings to JSON file"""
+    try:
+        with open(MAPPINGS_FILE, 'w') as f:
+            json.dump(mappings, f, indent=2)
+        return True
+    except Exception as e:
+        logger.error(f"Error writing mappings: {e}")
+        return False
+
+@app.route('/api/mappings', methods=['GET'])
+def get_mappings():
+    """Get all mappings"""
+    try:
+        mappings = read_mappings()
+        return jsonify(mappings), 200
+    except Exception as e:
+        logger.error(f"Error fetching mappings: {e}")
+        return jsonify({'error': 'Failed to fetch mappings'}), 500
+
+@app.route('/api/mappings', methods=['POST'])
+def create_mapping():
+    """Create a new mapping"""
+    try:
+        new_mapping = request.get_json()
+        
+        if not new_mapping:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        mappings = read_mappings()
+        mappings.insert(0, new_mapping)
+        
+        if write_mappings(mappings):
+            return jsonify(new_mapping), 201
+        else:
+            return jsonify({'error': 'Failed to save mapping'}), 500
+            
+    except Exception as e:
+        logger.error(f"Error creating mapping: {e}")
+        return jsonify({'error': 'Failed to save mapping'}), 500
+
+@app.route('/api/mappings/<string:mapping_id>', methods=['PUT'])
+def update_mapping(mapping_id):
+    """Update an existing mapping"""
+    try:
+        updated_mapping = request.get_json()
+        
+        if not updated_mapping:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        mappings = read_mappings()
+        updated = False
+        
+        for i, mapping in enumerate(mappings):
+            if mapping.get('id') == mapping_id:
+                mappings[i] = updated_mapping
+                updated = True
+                break
+        
+        if not updated:
+            return jsonify({'error': 'Mapping not found'}), 404
+        
+        if write_mappings(mappings):
+            return jsonify(updated_mapping), 200
+        else:
+            return jsonify({'error': 'Failed to update mapping'}), 500
+            
+    except Exception as e:
+        logger.error(f"Error updating mapping: {e}")
+        return jsonify({'error': 'Failed to update mapping'}), 500
+
+@app.route('/api/mappings/<string:mapping_id>', methods=['DELETE'])
+def delete_mapping(mapping_id):
+    """Delete a mapping"""
+    try:
+        mappings = read_mappings()
+        original_length = len(mappings)
+        
+        mappings = [m for m in mappings if m.get('id') != mapping_id]
+        
+        if len(mappings) == original_length:
+            return jsonify({'error': 'Mapping not found'}), 404
+        
+        if write_mappings(mappings):
+            return jsonify({'success': True}), 200
+        else:
+            return jsonify({'error': 'Failed to delete mapping'}), 500
+            
+    except Exception as e:
+        logger.error(f"Error deleting mapping: {e}")
+        return jsonify({'error': 'Failed to delete mapping'}), 500
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    """Health check endpoint"""
+    return jsonify({'status': 'healthy'}), 200
+
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)

@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Sparkles, History, Upload } from 'lucide-react';
 import { toast } from 'sonner';
-import { saveMappingToLocal, getMappingsFromLocal, updateMappingInLocal } from '@/lib/mappingStorage';
+import { saveMappingToBackend, getMappingsFromBackend, updateMappingInBackend, deleteMappingFromBackend } from '@/lib/mappingStorage';
 
 const Index = () => {
   const [leftData, setLeftData] = useState<UploadSectionData>({
@@ -55,9 +55,17 @@ const Index = () => {
     rightData.portStation !== null;
 
   const canShowAIButton = isLeftComplete && isRightComplete;
-
+  const loadMappings = async () => {
+    try {
+      const mappings = await getMappingsFromBackend();
+      setPastMappings(mappings);
+    } catch (error) {
+      console.error('Failed to load mappings:', error);
+      // Optionally set an error state here
+    }
+  };
   useEffect(() => {
-    setPastMappings(getMappingsFromLocal());
+    loadMappings();
   }, []);
 
   const handleApprove = (approvedMappings: Array<{ targetKey: string; sourceKey: string }>) => {
@@ -74,22 +82,19 @@ const Index = () => {
       approvedMappings,
     };
     
-    saveMappingToLocal(newMapping);
-    setPastMappings(getMappingsFromLocal());
+    saveMappingToBackend(newMapping);
+    loadMappings();
     toast.success('Mapping saved successfully!');
   };
 
   const handleViewPastMapping = (mapping: SavedMapping) => {
+    loadMappings();
     setSelectedPastMapping(mapping);
     setIsViewingPastMapping(true);
+    
   };
 
-  const handleDeletePastMapping = (id: string) => {
-    const updated = pastMappings.filter(m => m.id !== id);
-    localStorage.setItem('savedMappings', JSON.stringify(updated));
-    setPastMappings(updated);
-    toast.success('Mapping deleted successfully!');
-  };
+
 
   const handleSavePastMappingEdit = (mappings: Array<{ targetKey: string; sourceKey: string }>) => {
     if (selectedPastMapping) {
@@ -97,9 +102,9 @@ const Index = () => {
         ...selectedPastMapping,
         approvedMappings: mappings,
       };
-      updateMappingInLocal(selectedPastMapping.id, updated);
+      updateMappingInBackend(selectedPastMapping.id, updated);
       setSelectedPastMapping(updated);
-      setPastMappings(getMappingsFromLocal());
+      loadMappings();
       toast.success('Mapping updated!');
     }
   };
@@ -162,7 +167,7 @@ const Index = () => {
       });
       formData.append('metadata', JSON.stringify(metadata));
 
-      const response = await fetch('http://127.0.0.1:5000/map_files', {
+      const response = await fetch('http://127.0.0.1:5000/api/map_files', {
         method: 'POST',
         body: formData,
       });
@@ -185,7 +190,11 @@ const Index = () => {
     }
   };
 
-
+  useEffect(() => {
+    if (activeTab === "history") {
+      loadMappings();
+    }
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -283,11 +292,12 @@ const Index = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="history">
+          <TabsContent value="history" onClick={()=>loadMappings()}>
             <PastMappingsView
               mappings={pastMappings}
               onViewMapping={handleViewPastMapping}
-              onDeleteMapping={handleDeletePastMapping}
+              onDeleteMapping={deleteMappingFromBackend}
+              refresh={loadMappings}
             />
           </TabsContent>
         </Tabs>
@@ -324,17 +334,17 @@ const Index = () => {
           <h3 className="text-xl font-semibold mb-6 text-center text-red-600">Duplicate Mapping Detected</h3>
           
           <p className="mb-6 text-center text-gray-700">
-            A mapping with this source and target combination already exists.
+            A mapping with this Origin and Destination combination already exists.
           </p>
           
           <div className="mb-6 p-4 border rounded-lg bg-gray-50 max-h-[40vh] overflow-y-auto">
             <h4 className="font-semibold mb-3 text-gray-900 border-b border-gray-300 pb-2">Matching Mapping Details:</h4>
             
             <p className="mb-2">
-              <strong>Source:</strong> {duplicateMapping.sourceCountry} / {duplicateMapping.sourceDomain} / {duplicateMapping.sourceSystem}
+              <strong>Origin:</strong> {duplicateMapping.sourceCountry} / {duplicateMapping.sourceDomain} / {duplicateMapping.sourceSystem}
             </p>
             <p className="mb-4">
-              <strong>Target:</strong> {duplicateMapping.targetCountry} / {duplicateMapping.targetDomain} / {duplicateMapping.targetSystem}
+              <strong>Destination:</strong> {duplicateMapping.targetCountry} / {duplicateMapping.targetDomain} / {duplicateMapping.targetSystem}
             </p>
 
            

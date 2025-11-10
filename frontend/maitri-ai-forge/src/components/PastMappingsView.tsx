@@ -2,7 +2,8 @@ import { ArrowRight, Calendar, Globe, Building2, Eye, Trash2, Edit, Grid3x3, Lis
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { ref } from 'process';
 
 export interface SavedMapping {
   id: string;
@@ -22,18 +23,21 @@ interface PastMappingsViewProps {
   onViewMapping: (mapping: SavedMapping) => void;
   onDeleteMapping: (id: string) => void;
   onEditMapping?: (mapping: SavedMapping) => void;
+  refresh: () => void;
 }
 
 type ViewMode = 'grid' | 'table';
 type FilterType = 'all' | 'origin' | 'destination';
 
-export const PastMappingsView = ({ mappings, onViewMapping, onDeleteMapping, onEditMapping }: PastMappingsViewProps) => {
+export const PastMappingsView = ({ mappings, onViewMapping, onDeleteMapping, onEditMapping,refresh }: PastMappingsViewProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('table');
   const [filterType, setFilterType] = useState<FilterType>('all');
   const [countryFilter, setCountryFilter] = useState<string>('all');
   const [domainFilter, setDomainFilter] = useState<string>('all');
   const [systemFilter, setSystemFilter] = useState<string>('all');
-
+  useEffect(() => {
+    refresh();
+  });
   // Extract unique values for filters
   const { countries, domains, systems } = useMemo(() => {
     const countries = new Set<string>();

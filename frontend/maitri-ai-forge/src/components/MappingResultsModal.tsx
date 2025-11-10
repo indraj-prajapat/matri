@@ -387,9 +387,9 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove, score
     });
 
     return (
-      <Dialog open={isOpen} onOpenChange={onClose}>
+      <Dialog open={isOpen} onOpenChange={()=>setIsPreviewMode(false)}>
         <DialogContent className="max-w-5xl max-h-[90vh] flex flex-col">
-          <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-accent text-center bg-clip-text text-transparent">
             Mapping Preview
           </DialogTitle>
 
@@ -440,7 +440,7 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove, score
                           </Tooltip>
                         </TooltipProvider>
                       ) : (
-                        <span className="text-muted-foreground italic">None selected</span>
+                        <span className="text-muted-foreground italic">None mapped</span>
                       )}
                     </td>
                   </tr>
@@ -548,7 +548,7 @@ export const MappingResultsModal = ({ isOpen, onClose, results, onApprove, score
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-[95vw] max-h-[90vh] flex flex-col ">
-        <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-center text-transparent">
           Mapping Results
         </DialogTitle>
 
