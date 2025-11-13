@@ -1,12 +1,13 @@
 import sys, os 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
+from dotenv import load_dotenv
 import openai
 import json
 from typing import List, Dict
 from src.utils.helper import *
-
-groq = GroqHelper(env_groq_client()) if groq is not None else None
+load_dotenv()
+# groq = GroqHelper(env_groq_client()) if groq is not None else None1
+groq = ChatGPTHelper(os.getenv("token"))
 emb = EmbeddingModel("all-MiniLM-L6-v2")
 
 import numpy as np
@@ -54,7 +55,7 @@ def refined_token_disintegration_score(
     src_key: str,
     tgt_key: str,
     emb_model: EmbeddingModel,
-    groq_helper: GroqHelper
+    groq_helper: ChatGPTHelper
 ) -> Tuple[float, float, float]:
     s_tokens = tokenize_key(src_key)
     t_tokens = tokenize_key(tgt_key)

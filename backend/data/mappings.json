@@ -1,1 +1,115 @@
-[]
+[
+  {
+    "id": "1763018576968",
+    "timestamp": 1763018576968,
+    "sourceCountry": "UAE",
+    "sourceDomain": "Marine",
+    "sourceSystem": "Port of Jebel Ali",
+    "targetCountry": "India",
+    "targetDomain": "Marine",
+    "targetSystem": "Jawaharlal Nehru Port",
+    "mappingCount": 25,
+    "approvedMappings": [
+      {
+        "targetKey": "In-M-NSFT-Codeco::ActivityDateTime",
+        "sourceKey": "ADP-M-CODACO::DateOfMovement"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ActivityType",
+        "sourceKey": "ADP-M-CODACO::MovementType"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::Container SealNo1",
+        "sourceKey": "ADP-M-CODACO::SealNumber"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::Container SealNo2",
+        "sourceKey": "ADP-M-CODACO::SealNumber"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerCategory",
+        "sourceKey": "ADP-M-CODACO::Category"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerCommodity",
+        "sourceKey": "ADP-M-CODACO::ContainerDocumentReference"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerDischPort",
+        "sourceKey": "ADP-M-CODACO::PortOfDischarge"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerGrossWt",
+        "sourceKey": "ADP-M-CODACO::GrossWeight"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerGrossWtUnit",
+        "sourceKey": "ADP-M-CODACO::GrossWeight"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerISOType",
+        "sourceKey": "ADP-M-CODACO::ContainerNumber"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerIsReefer",
+        "sourceKey": "ADP-M-CODACO::ReeferDetails"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerLineOpr",
+        "sourceKey": "ADP-M-CODACO::ContainerNumber"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerLoadPort",
+        "sourceKey": "ADP-M-CODACO::PortOfLoading"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerNbr",
+        "sourceKey": "ADP-M-CODACO::ContainerNumber"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerReqTempUnit",
+        "sourceKey": "ADP-M-VESPRO::CapacityUnit"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerRequiredTemp",
+        "sourceKey": "ADP-M-CODACO::ContainerDocumentReference"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ContainerStatus",
+        "sourceKey": "ADP-M-CODACO::ContainerNumber"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::ReceipientID",
+        "sourceKey": "ADP-M-CODACO::ShippingLineID"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::SenderID",
+        "sourceKey": "ADP-M-CODACO::ShippingLineID"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::TerminalID",
+        "sourceKey": "ADP-M-VESPRO::TerminalCode"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::VesselCallSign",
+        "sourceKey": "ADP-M-VESDEP::CallSign"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::VesselID",
+        "sourceKey": "ADP-M-CODACO::VesselID"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::VesselName",
+        "sourceKey": "ADP-M-VESDEP::Vessel"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::VslInVoyageNbr",
+        "sourceKey": "ADP-M-VESDEP::InboundVoyage"
+      },
+      {
+        "targetKey": "In-M-NSFT-Codeco::VslOutVoyageNbr",
+        "sourceKey": "ADP-M-VESDEP::OutboundVoyage"
+      }
+    ]
+  }
+]

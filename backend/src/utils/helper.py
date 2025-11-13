@@ -183,6 +183,106 @@ class GroqHelper:
                 synonyms_cache[key] = set(self.get_synonyms(key))
         return synonyms_cache
 
+def env_chatgpt_client():
+    api_key = os.getenv("token")
+    if not api_key or not api_key.strip():
+        raise ValueError("OpenAI API key is not provided. Set OPENAI_API_KEY in environment variables.")
+    return openai.OpenAI(api_key=token)
+
+class ChatGPTHelper:
+    def __init__(self, client=None, model="gpt-4o-mini"):
+        self.client = client or env_chatgpt_client()
+        self.model = model
+        self.response_cache = {}
+
+    def get_synonyms(self, key: str) -> List[str]:
+
+        if key in self.response_cache:
+            return self.response_cache[key]
+
+        prompt = (
+            f"You are an expert in maritime data. Provide a comma-separated list of "
+            f"domain-specific synonyms and alternative labels for the term '{key}'. "
+            f"For example, for 'GRT', synonyms might include 'Gross Tonnage', 'GrossRegTons'. "
+            f"If none, return an empty string. Only return the list."
+        )
+
+        if not self.client:
+            self.response_cache[key] = []
+            return []
+
+        try:
+            resp = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=64,
+            )
+
+            # defensive extraction for different client shapes
+            synonyms_str = ""
+            try:
+                synonyms_str = resp.choices[0].message.content.strip()
+            except Exception:
+                # try alternate attribute access (older/newer clients)
+                try:
+                    synonyms_str = getattr(resp.choices[0], "text", "").strip()
+                except Exception:
+                    synonyms_str = ""
+
+            if not synonyms_str:
+                self.response_cache[key] = []
+                return []
+
+            # split, normalize
+            synonyms = [s.strip().lower() for s in synonyms_str.split(",") if s.strip()]
+            top_synonyms = synonyms[:3]
+
+            # try to use an external lemmatizer if available; otherwise skip lemmatization
+            lemmatized_synonyms: List[str] = []
+            try:
+                # import from user's codebase; if not present, this will raise and we skip
+                from _main_ import lemmatize_token  # type: ignore
+
+                for s in top_synonyms:
+                    try:
+                        lem = lemmatize_token(s)
+                        if lem and lem != s:
+                            lemmatized_synonyms.append(lem)
+                    except Exception:
+                        continue
+            except Exception:
+                # no external lemmatizer found — that's fine, proceed without it
+                pass
+
+            # preserve order, deduplicate
+            combined = top_synonyms + lemmatized_synonyms
+            seen = set()
+            ordered_unique: List[str] = []
+            for item in combined:
+                if item not in seen:
+                    seen.add(item)
+                    ordered_unique.append(item)
+
+            self.response_cache[key] = ordered_unique
+            return ordered_unique
+
+        except Exception:
+            # swallow errors to match original behavior
+            return []
+
+    def get_all_synonyms(self, keys: List[str]) -> Dict[str, set]:
+        """
+        For a list of keys, return a dict mapping key -> set of synonyms.
+        """
+        synonyms_cache: Dict[str, set] = {}
+        for key in keys:
+            if key not in synonyms_cache:
+                synonyms_cache[key] = set(self.get_synonyms(key))
+        return synonyms_cache
+ 
+
+
+
 class EmbeddingModel:
     def __init__(self, model_name="all-MiniLM-L6-v2"):
         self.model_name = model_name
